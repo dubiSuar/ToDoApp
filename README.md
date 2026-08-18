@@ -1,97 +1,78 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# TaskFlow — React Native To-Do List
 
-# Getting Started
+TaskFlow is a modern mobile To-Do List application built with React Native. It helps users organize their day by adding, editing, searching, and filtering tasks, while keeping data persistent.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## Learning Objectives
 
-## Step 1: Start Metro
+This project was built as an educational demonstration of the following React Native and JavaScript concepts:
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+* **Arrays & Array Methods**: Utilizes arrays to manage state. Demonstrates practical use of `.map()`, `.filter()`, `.find()`, `.findIndex()`, `.some()`, and `.reduce()`.
+* **FlatList**: Efficiently renders a list of tasks without relying on `.map()` for the main UI structure.
+* **Controlled Inputs**: Uses React state to manage form inputs (e.g., Add/Edit Task modal).
+* **Uncontrolled Inputs**: Demonstrates the use of `useRef` to clear/focus the search input natively.
+* **Callbacks**: Implements parent-child communication for task actions (toggling, editing, deleting).
+* **Promises**: Uses Promises to wrap asynchronous local storage operations.
+* **Async/Await**: Used heavily for startup data loading and data persistence handling.
+* **Local Storage / Cache**: Persists data using `@react-native-async-storage/async-storage` so it survives app restarts.
+* **APK Generation**: Preconfigured and ready for generating an Android APK release build.
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+## Installation
 
-```sh
-# Using npm
+```bash
+# Install the project dependencies
+npm install
+```
+
+## Running the application
+
+```bash
+# Start the Metro bundler
 npm start
 
-# OR using Yarn
-yarn start
-```
-
-## Step 2: Build and run your app
-
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
-
-### Android
-
-```sh
-# Using npm
+# Run on Android
 npm run android
-
-# OR using Yarn
-yarn android
 ```
 
-### iOS
+## Project Structure
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
-
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
-```sh
-bundle install
+```text
+TaskFlow/
+├── src/
+│   ├── components/      # Reusable UI components (TaskItem, TaskList, etc.)
+│   ├── screens/         # Main screens (HomeScreen)
+│   ├── services/        # Logic for AsyncStorage operations
+│   ├── utils/           # Helper functions (ID generation)
+│   └── styles/          # Design system and theme variables
+├── App.js               # Entry point of the application
+├── package.json         # Dependencies and scripts
+└── android/             # Android native code and build configurations
 ```
 
-Then, and every time you update your native dependencies, run:
+## Educational Walkthrough
 
-```sh
-bundle exec pod install
-```
+- **`src/screens/HomeScreen.js`**: Contains main state logic, `async/await`, array methods (`map`, `filter`, `find`, `findIndex`, `some`), and callbacks.
+- **`src/components/TaskStats.js`**: Demonstrates `.reduce()` to calculate task statistics dynamically.
+- **`src/components/TaskList.js`**: Showcases `FlatList` with `ListEmptyComponent` and `keyExtractor`.
+- **`src/components/AddTaskModal.js`**: Shows controlled components tied to state (`useState`).
+- **`src/components/SearchBar.js`**: Highlights uncontrolled component usage with `useRef`.
+- **`src/services/taskStorage.js`**: Implements custom Promises wrapped around `AsyncStorage`.
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+## Laboratory Concept Mapping
 
-```sh
-# Using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
-```
-
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
-
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
-
-## Step 3: Modify your app
-
-Now that you have successfully run the app, let's make changes!
-
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
-
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
-
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+| Required Concept        | Implementation              | Location |
+| ----------------------- | --------------------------- | -------- |
+| Arrays                  | Task state array            | `HomeScreen.js` |
+| `map()`                 | Task toggling               | `HomeScreen.js` |
+| `filter()`              | Search/filter / deletion    | `HomeScreen.js` |
+| `find()`                | Retrieve task for edit      | `HomeScreen.js` |
+| `findIndex()`           | Update task after edit      | `HomeScreen.js` |
+| `some()`                | Checking if any task is done| `HomeScreen.js` |
+| `reduce()`              | Task statistics             | `TaskStats.js` |
+| FlatList                | Main task rendering         | `TaskList.js` |
+| Controlled variable     | Add/Edit Task form          | `AddTaskModal.js` |
+| Uncontrolled variable   | Search input ref            | `SearchBar.js` |
+| Callback                | Parent-child task handlers  | `TaskItem.js` / `HomeScreen.js` |
+| Promise                 | Storage service             | `taskStorage.js` |
+| Async/Await             | Loading/saving tasks        | `HomeScreen.js` |
+| Cache/Temporary Storage | AsyncStorage                | `taskStorage.js` |
+| APK                     | Android release build       | `BUILD_APK.md` |
